@@ -1,6 +1,8 @@
 package hr.ja.weboo.lib;
 
 
+import hr.ja.weboo.lib.widget.Widget;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,7 +44,7 @@ public class Navigation extends Widget {
     }
 
     @Override
-    public String html() {
+    public String getHtml() {
         return html;
     }
 

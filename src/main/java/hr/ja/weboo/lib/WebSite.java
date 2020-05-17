@@ -1,6 +1,7 @@
 package hr.ja.weboo.lib;
 
-import hr.ja.weboo.PageMain;
+import hr.ja.weboo.MyPage1;
+import hr.ja.weboo.lib.widget.Widget;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomUtils;
@@ -13,21 +14,18 @@ import java.util.Map;
 @Slf4j
 public abstract class WebSite extends Widget {
 
-    @Getter
-    private final String tabId;
-
-    private Map<String, PageHolder> pageNames = new HashMap<>();
-
     protected static ThreadLocal<HttpServletRequest> request = new ThreadLocal<>();
     protected static ThreadLocal<HttpServletResponse> response = new ThreadLocal<>();
-
+    @Getter
+    private final String tabId;
+    private Map<String, PageHolder> pageNames = new HashMap<>();
     @Getter
     private Navigation navigation = new Navigation();
 
     @Getter
     private Page currentPage;
 
-    private Class<PageMain> defaultPage;
+    private Class<MyPage1> defaultPage;
 
     //language=InjectedFreeMarker
     @SuppressWarnings("preview")
@@ -74,7 +72,7 @@ public abstract class WebSite extends Widget {
                 </a>
                         
                 <div class="sidebar">
-                    ${navigation}
+                    ${navigation} 
                 </div>
                 
               </aside>
@@ -102,7 +100,7 @@ public abstract class WebSite extends Widget {
                 <!-- Main content -->
                 <div class="content">
                   <div class="container-fluid" id='content'>
-                    ${currentPage}
+                   <#-- ${currentPage} -->
                     <!-- /.row -->
                   </div><!-- /.container-fluid -->
                 </div>
@@ -132,8 +130,8 @@ public abstract class WebSite extends Widget {
             <div id="sidebar-overlay"></div></div>
             <!-- ./wrapper -->
 
-            <script src="plugins/jquery/jquery.min.js"></script>
-            <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="plugins/jquery/jquery.js"></script>
+            <script src="plugins/bootstrap/js/bootstrap.bundle.js"></script>
             <script src="dist/js/adminlte.min.js"></script> 
             <script src="location-bar.js"></script>
             <script src="main.js"></script>
@@ -145,7 +143,16 @@ public abstract class WebSite extends Widget {
         this.tabId = "tabId_" + Math.abs(RandomUtils.nextLong());
     }
 
-    public void setDefaultPage(Class<PageMain> defaultPage) {
+    public static void set(HttpServletRequest request, HttpServletResponse response) {
+        WebSite.request.set(request);
+        WebSite.response.set(response);
+    }
+
+    public static Context getContext() {
+        return new Context();
+    }
+
+    public void setDefaultPage(Class<MyPage1> defaultPage) {
         this.defaultPage = defaultPage;
     }
 
@@ -155,24 +162,19 @@ public abstract class WebSite extends Widget {
 
 
     public String renderWebSite(HttpServletRequest req, HttpServletResponse res) {
-        request.set(req);
-        response.set(res);
-
         Page page = findPage(req);
         currentPage = page;
         return TemplateParser.parseWidget(this);
     }
 
     public String renderPage(HttpServletRequest req, HttpServletResponse res) {
-        request.set(req);
-        response.set(res);
 
         Page page = findPage(req);
-        page.render(req,res);
+        page.prepare(req, res);
         return TemplateParser.parsePage(page);
     }
 
-    public String html() {
+    public String getHtml() {
         return html;
     }
 

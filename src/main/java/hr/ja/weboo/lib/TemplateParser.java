@@ -3,7 +3,7 @@ package hr.ja.weboo.lib;
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
-import hr.ja.weboo.MyTextBox;
+import hr.ja.weboo.lib.widget.Widget;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,20 +24,17 @@ public class TemplateParser {
 
     public static String parseWidget(Widget w) {
         String templateID = w.getClass().getCanonicalName();
-        return instance.parse(w.html(), w, templateID);
+        return instance.parse(w.getHtml(), w, templateID);
     }
 
     public static String parsePage(Page page) {
         String templateID = page.getClass().getCanonicalName();
-        String template = page.html();
+        String template = page.getHtml();
         return instance.parse(template, page, templateID);
     }
 
     public static void main(String[] args) {
         TemplateParser parser = new TemplateParser();
-        MyTextBox myTextBox = new MyTextBox();
-        String html = parser.parseWidget(myTextBox);
-        log.debug(html);
     }
 
     @SneakyThrows

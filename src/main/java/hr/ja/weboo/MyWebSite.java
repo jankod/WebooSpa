@@ -10,16 +10,16 @@ public class MyWebSite extends WebSite {
 
     public MyWebSite() {
 
-        log.debug("delam web site");
+        //   log.debug("delam web site, stari webSiteId "+ request.get().getHeader("tabId"));
 
         getNavigation()
-                .addPage("Main", PageMain.class)
-                .addPage("Second", PageSecond.class);
+                .addPage("Main", MyPage1.class)
+                .addPage("Second", MyPage2.class);
 
-        setDefaultPage(PageMain.class);
+        setDefaultPage(MyPage1.class);
 
-        addPage("main", PageMain.class);
-        addPage("second", PageSecond.class);
+        addPage("main", MyPage1.class);
+        addPage("second", MyPage2.class);
     }
 
 }

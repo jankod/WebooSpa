@@ -1,11 +1,18 @@
 package hr.ja.weboo.lib;
 
-import hr.ja.weboo.JSUtil;
-
 public interface ClickProducer extends HasId {
 
-    default String onClickHandle() {
-        return JSUtil.getOnClick(getId());
+
+    default JsBuilder js() {
+        return new JsBuilder(getId());
+    }
+
+
+
+    void click(AjaxRequestResponse r);
+
+    default void addClickListener(ClickListener clickListener) {
+        JSUtil.addClickListener(clickListener, getId());
     }
 
 
