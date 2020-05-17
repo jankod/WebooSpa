@@ -15,7 +15,7 @@ public class TextBox extends FormField {
     //language=InjectedFreeMarker
     private String html = """
             <div class='form-group'>
-                <label for='${id}_txt'>${label}</span></label>
+                <label for='${id}_txt'>${label}</label>
                 <input class='form-control' id='${id}_txt' type='text' placeholder='${placeholder} '>
                 <#if helpMessage?has_content>
                    <small class="form-text text-muted">
@@ -24,7 +24,7 @@ public class TextBox extends FormField {
                 </#if>
                 <div class="invalid-feedback">
                   
-                </div
+                </div>
             </div>
             """;
 

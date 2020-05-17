@@ -16,7 +16,8 @@ public class MyPage1 extends Page {
 
     Button button = new Button("klikni me");
     TextBox textBox = new TextBox("Unesi ime");
-    private String name = "janko";
+
+    private String name = "Page 1";
 
     public MyPage1() {
         button.onClickCallJs("ja_buttonClick");

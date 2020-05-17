@@ -7,5 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public abstract class Page extends Widget {
 
+    public abstract String getName();
+
     public abstract void prepare(HttpServletRequest req, HttpServletResponse res);
 }

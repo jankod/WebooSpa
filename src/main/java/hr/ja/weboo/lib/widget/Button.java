@@ -14,7 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 @AllArgsConstructor
 public class Button extends Widget implements ClickProducer {
 
-    String label = "";
+    protected String label = "";
+
     private String onClickJsFunction;
 
     private JsEventBuilder builder;

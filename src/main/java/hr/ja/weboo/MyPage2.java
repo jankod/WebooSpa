@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 @Getter
 public class MyPage2 extends Page {
 
+    String name = "Page 2";
+
     String pageParam = "page param 1";
 
     TextBox textBox = new TextBox();

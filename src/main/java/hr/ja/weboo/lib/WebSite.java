@@ -100,14 +100,14 @@ public abstract class WebSite extends Widget {
                 <!-- Main content -->
                 <div class="content">
                   <div class="container-fluid" id='content'>
-                   <#-- ${currentPage} -->
-                    <!-- /.row -->
-                  </div><!-- /.container-fluid -->
+                    ${currentPage} 
+                  </div>
                 </div>
-                <!-- /.content -->
-              </div>
-              <!-- /.content-wrapper -->
-                        
+                
+                
+             
+              </div> <!-- /.content-wrapper -->
+              
               <!-- Control Sidebar -->
               <aside class="control-sidebar control-sidebar-dark">
                 <!-- Control sidebar content goes here -->
@@ -127,7 +127,8 @@ public abstract class WebSite extends Widget {
                 <!-- Default to the left -->
                 <strong>Copyright © 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
               </footer>
-            <div id="sidebar-overlay"></div></div>
+            <div id="sidebar-overlay"></div>
+            </div>
             <!-- ./wrapper -->
 
             <script src="plugins/jquery/jquery.js"></script>
